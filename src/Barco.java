@@ -57,11 +57,6 @@ public class Barco {
             estaHundido=true;
         }
     }
-    public char estadoDeLaPiezaDelBarco(){
-        char estado;
-
-        return estado;
-    }
 
 
 }

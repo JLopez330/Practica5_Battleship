@@ -25,4 +25,6 @@ public class Espacio {
     public int getCordenadaEnY() {
         return cordenadaEnY;
     }
+
+
 }
