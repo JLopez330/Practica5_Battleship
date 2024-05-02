@@ -1,5 +1,14 @@
+import java.util.ArrayList;
+
 public class Jugador {
 
-    private Espacio grid;
+    private ArrayList<Barco> barcos;
+
+
+    public Jugador(){
+
+    }
+
+
 
 }

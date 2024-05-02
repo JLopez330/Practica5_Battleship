@@ -1,15 +1,18 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Barco {
     private int tamano;
     private int vida;
-    private Espacio[] ubicacion;
+    private ArrayList<Espacio> ubicacion;
     private boolean estaHundido;
 
-    public Barco(int tamano,int cordX, int cordY, char orientacion){
+    public Barco(int tamano,char cordX, char cordY, char orientacion){
         this.tamano = tamano;
         this.vida = this.tamano;
         estaHundido = false;
-        ubicacion = new Espacio[this.tamano];
-        darUbicacionABarco(cordX,cordY,orientacion);
+        ubicacion = new ArrayList<>();
+        crearBarco(cordX,cordY,orientacion);
     }
 
     //Setters y getters de la clase
@@ -37,16 +40,42 @@ public class Barco {
         return vida;
     }
 
-    public void darUbicacionABarco(int cordX, int cordY, char orientacion){
+    public void crearBarco(char cordX, char cordY, char orientacion){
         for (int i = 0; i < tamano; i++) {
             Espacio aux = new Espacio(cordX,cordY);
-            ubicacion[i]=aux;
+            ubicacion.add(aux);
             if(orientacion == 'H' || orientacion == 'h'){
                 cordX++;
             } else if (orientacion == 'V' || orientacion == 'v') {
                 cordY++;
             }
         }
+    }
+
+    public String verificarGolpe(int cordX, int cordY){
+        String resultado = "";
+        int marcadorGolpe = 0;
+
+        Iterator<Espacio> iterador = ubicacion.iterator();
+        while(iterador.hasNext()){
+            Espacio espacio = iterador.next();
+            if(espacio.getCordenadaEnX()==cordX && espacio.getCordenadaEnY()==cordY){
+                marcadorGolpe = 1;
+                iterador.remove();
+            }
+        }
+
+        if(marcadorGolpe>0){
+            golpearBarco(true);
+            if(!estaHundido){
+                resultado = "Golpe!";
+            }else{
+                resultado = "Hundido!";
+            }
+        }
+        resultado = "Agua!";
+
+        return resultado;
     }
 
     public void golpearBarco(boolean fueGolpeado){
