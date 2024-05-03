@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Battleship {
     Tablero tablero = new Tablero();
+    Jugador jugador = new Jugador();
     Tablero enemigo = new Tablero();
     int dificultad=0;
     public Battleship(){
@@ -56,7 +57,26 @@ public class Battleship {
             letra++; // Incrementar la letra
         }
     }
-    public void colocarBarcosJugador(){
-
+    public void colocarBarcosJugador() {
+        int coordenadaX;
+        int coordenadaY;
+        char orientacion;
+        char coordenadaYLetra;
+        Scanner aux = new Scanner(System.in);
+        do{
+            System.out.println("Ingrese la letra de la columna (a-j):");
+            coordenadaYLetra = aux.next().charAt(0);
+            coordenadaY = coordenadaYLetra - 'a' + 1;
+        }while(!(coordenadaY >= 1 && coordenadaY <= 10));
+        do {
+            System.out.println("Ingrese el número de la fila");
+            coordenadaX = aux.nextInt();
+        }while(!((coordenadaX>0 && coordenadaX<=10)));
+        do {
+            System.out.println("Ingrese V para vertical o H para horizontal:");
+            orientacion = Character.toUpperCase(aux.next().charAt(0));
+        } while (!(orientacion == 'V' || orientacion == 'H'));
+        System.out.println("Posición seleccionada: " + coordenadaYLetra + coordenadaX + orientacion);
+        System.out.println("La letra: " + coordenadaYLetra + " Equivale a: " + coordenadaY);
     }
 }

@@ -3,6 +3,7 @@ public class Test {
         Battleship juego = new Battleship();
         juego.mostrarTableroComputadora();
         juego.mostrarTableroJugador();
+        juego.colocarBarcosJugador();
     }
 
 }

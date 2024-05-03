@@ -6,9 +6,10 @@ public class Jugador {
 
 
     public Jugador(){
-
+        barcos = new ArrayList<>();
     }
 
-
-
+    public void añadirBarco(int tamano,char cordX, char cordY, char orientacion){
+        barcos.add(new Barco(tamano,cordX,cordY,orientacion));
+    }
 }
