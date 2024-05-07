@@ -40,6 +40,10 @@ public class Barco {
         return vida;
     }
 
+    public ArrayList<Espacio> getUbicaciones(){
+        return ubicacion;
+    }
+
     public void crearBarco(int cordX, int cordY, char orientacion){
         for (int i = 0; i < tamano; i++) {
             Espacio aux = new Espacio(cordX,cordY);
@@ -51,6 +55,22 @@ public class Barco {
             }
         }
     }
+
+    public boolean compararUbicacionesConOtroBarco(ArrayList<Espacio> ubicaciones){
+        boolean coinciden = false;
+        for (Espacio espacio:ubicacion) {
+            for (Espacio auxEspacio:
+                 ubicaciones) {
+               if(espacio.getCordenadaEnX()==auxEspacio.getCordenadaEnX() &&
+               espacio.getCordenadaEnY()== auxEspacio.getCordenadaEnY()){
+                   coinciden=true;
+                   break;
+               }
+            }
+        }
+        return coinciden;
+    }
+
 
     public String verificarGolpe(int cordX, int cordY){
         String resultado = "";

@@ -3,19 +3,25 @@ import java.util.Scanner;
 public class Battleship {
     Tablero tablero = new Tablero();
     Jugador jugador = new Jugador();
+    Enemigo computadora = new Enemigo();
     Tablero enemigo = new Tablero();
     int dificultad=0;
     public Battleship(){
+
+    }
+
+    public void iniciarJuego(){
         Scanner escanear = new Scanner(System.in);
         System.out.println("Bienvenido a Battleship!");
         do{
-            System.out.println("Seleccione una dificultad: 0 es facil y 1 es dificil");
+            System.out.println("========Seleccione una dificultad========");
+            System.out.println("[0] Facil\n"+"[1] Dificil");
             dificultad=escanear.nextInt();
             if (!(dificultad==1 || dificultad==0)){
                 System.out.println("Esa dificultad no esta disponible");
             }
         }while(!(dificultad==1 || dificultad==0));
-
+        jugarTurno();
     }
     public void mostrarTableroComputadora(){
         System.out.println("Tablero de la maquina");
@@ -99,5 +105,29 @@ public class Battleship {
             }while(!lugarValido);
             System.out.println("Se creo un barco de tamaño: "+tamaño);
         }while(tamaño<5);
+    }
+
+    public void jugarTurno(){
+        System.out.println("============Tablero Jugador============");
+        jugador.mostrarElTablero();
+        System.out.println();
+        System.out.println("============Tablero Enemigo============");
+        computadora.mostrarElTablero();
+        System.out.println();
+
+    }
+
+    /**
+     * Valida si el barco se saldrá del tamaño adecuado del grid
+     */
+    public boolean validarColocarEnGrid(int cordX, int cordY, int tamaño, char orientar){
+        boolean sePuede = true;
+        if(tamaño >= 2 && cordX==10 && orientar == 'H'){
+            sePuede = false;
+        } else if (tamaño >=2 && cordY==10 && orientar == 'V') {
+            sePuede = false;
+        }
+
+        return sePuede;
     }
 }
