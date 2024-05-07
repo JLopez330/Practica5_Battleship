@@ -1,8 +1,8 @@
 public class Espacio {
-    private char cordenadaEnX;
-    private char cordenadaEnY;
+    private int cordenadaEnX;
+    private int cordenadaEnY;
 
-    public Espacio(char cordX, char cordY){
+    public Espacio(int cordX, int cordY){
         cordenadaEnX = cordX;
         cordenadaEnY = cordY;
     }
@@ -10,21 +10,21 @@ public class Espacio {
     //Setters y Getters
 
 
-    public void setCordenadaEnX(char cordenadaEnX) {
+    public void setCordenadaEnX(int cordenadaEnX) {
 
         this.cordenadaEnX = cordenadaEnX;
     }
 
-    public void setCordenadaEnY(char cordenadaEnY) {
+    public void setCordenadaEnY(int cordenadaEnY) {
 
         this.cordenadaEnY = cordenadaEnY;
     }
 
-    public char getCordenadaEnX() {
+    public int getCordenadaEnX() {
         return cordenadaEnX;
     }
 
-    public char getCordenadaEnY() {
+    public int getCordenadaEnY() {
         return cordenadaEnY;
     }
 

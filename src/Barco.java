@@ -7,7 +7,7 @@ public class Barco {
     private ArrayList<Espacio> ubicacion;
     private boolean estaHundido;
 
-    public Barco(int tamano,char cordX, char cordY, char orientacion){
+    public Barco(int tamano,int cordX, int cordY, char orientacion){
         this.tamano = tamano;
         this.vida = this.tamano;
         estaHundido = false;
@@ -40,7 +40,7 @@ public class Barco {
         return vida;
     }
 
-    public void crearBarco(char cordX, char cordY, char orientacion){
+    public void crearBarco(int cordX, int cordY, char orientacion){
         for (int i = 0; i < tamano; i++) {
             Espacio aux = new Espacio(cordX,cordY);
             ubicacion.add(aux);
