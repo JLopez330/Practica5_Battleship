@@ -21,15 +21,15 @@ public class Jugador {
      */
     public void crearBarcosATablero(){
         Scanner sc = new Scanner(System.in);
-        int tamaño=3;
+        int tamaño=2;
         for (int i = 0; i < 5; i++) {
             int cordX=-1;
             int cordY=-1;
             char cordYLetra='X';
             char orientacion = 'X';
             boolean colocable = false;
-            if(i>2){
-                tamaño=2;
+            if(i==2){
+                tamaño=3;
             }
             Barco aux;
             do {
@@ -71,7 +71,7 @@ public class Jugador {
 
                 }
             }while(!colocable);
-
+        tamaño++;
         }
     }
 
