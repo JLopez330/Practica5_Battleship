@@ -4,15 +4,33 @@ import java.util.Iterator;
 public class Barco {
     private int tamano;
     private int vida;
+    private int cordX;
+    private int cordY;
+    private char orientacion;
     private ArrayList<Espacio> ubicacion;
     private boolean estaHundido;
 
-    public Barco(int tamano,int cordX, int cordY, char orientacion){
+    public Barco(int tamano, int cordX, int cordY, char orientacion) {
         this.tamano = tamano;
         this.vida = this.tamano;
+        this.cordX = cordX;
+        this.cordY = cordY;
+        this.orientacion = orientacion;
         estaHundido = false;
         ubicacion = new ArrayList<>();
-        crearBarco(cordX,cordY,orientacion);
+        crearBarco(cordX, cordY, orientacion);
+    }
+
+    public int getCordX() {
+        return cordX;
+    }
+
+    public int getCordY() {
+        return cordY;
+    }
+
+    public char getOrientacion() {
+        return orientacion;
     }
 
     //Setters y getters de la clase

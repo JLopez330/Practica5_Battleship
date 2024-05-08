@@ -97,8 +97,8 @@ public class Jugador {
      * Manda una copia de los barcos al tablero para poder mostrarlos
      */
     public void mandarBarcosATablero(){
-        for (Barco barco: barcos) {
-            tablero.recibirBarco(barco);
+        for (int i = 0; i < 5 && i < barcos.size(); i++) {
+            tablero.recibirBarco(barcos.get(i));
         }
     }
 

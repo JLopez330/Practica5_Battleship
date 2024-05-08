@@ -56,4 +56,17 @@ public class Tablero {
     public char devolverContenido(int coordenadaX, int coordenadaY){
         return coordenadasGrid[coordenadaX-1][coordenadaY-1];
     }
+
+    public void modificarContenido(){
+        System.out.println(barcos.size());
+        for(int i=1;i<=5;i++){
+            for (int j=1;j<=barcos.get(i).getTamano();j++){
+                if(barcos.get(i).getOrientacion()=='H'){
+                    coordenadasGrid[barcos.get(i).getCordX()+j-1][barcos.get(i).getCordY()] = 'o';
+                }else if(barcos.get(i).getOrientacion()=='V'){
+                    coordenadasGrid[barcos.get(i).getCordX()][barcos.get(i).getCordY()+j-1] = 'o';
+                }
+            }
+        }
+    }
 }
