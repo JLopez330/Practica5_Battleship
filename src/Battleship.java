@@ -21,6 +21,7 @@ public class Battleship {
                 System.out.println("Esa dificultad no esta disponible");
             }
         }while(!(dificultad==1 || dificultad==0));
+        jugador.crearBarcosATablero();
         jugarTurno();
     }
     public void mostrarTableroComputadora(){
@@ -63,49 +64,6 @@ public class Battleship {
             letra++; // Incrementar la letra
         }
     }
-    public void colocarBarcosJugador() {
-        int coordenadaX;
-        int coordenadaY;
-        char orientacion;
-        char coordenadaYLetra;
-        int tamaño=2;
-        boolean lugarValido=false;
-        boolean repetirTercerBarco=true;
-        Scanner aux = new Scanner(System.in);
-        do {
-            do {
-                lugarValido=false;
-                do {
-                    System.out.println("Ingrese la letra de la columna (a-j):");
-                    coordenadaYLetra = Character.toLowerCase(aux.next().charAt(0));
-                    coordenadaY = coordenadaYLetra - 'a' + 1;
-                } while (!(coordenadaY >= 1 && coordenadaY <= 10));
-                do {
-                    System.out.println("Ingrese el número de la fila");
-                    coordenadaX = aux.nextInt();
-                } while (!((coordenadaX > 0 && coordenadaX <= 10)));
-                do {
-                    System.out.println("Ingrese V para vertical o H para horizontal:");
-                    orientacion = Character.toUpperCase(aux.next().charAt(0));
-                } while (!(orientacion == 'V' || orientacion == 'H'));
-                System.out.println("Posición seleccionada: " + coordenadaYLetra + coordenadaX + orientacion);
-                System.out.println("La letra: " + coordenadaYLetra + " Equivale a: " + coordenadaY);
-                if (orientacion == 'V' && coordenadaY + tamaño <= 10) {
-                    jugador.añadirBarco(tamaño, coordenadaX, coordenadaY, orientacion);
-                    lugarValido=true;
-                } else if (orientacion == 'H' && coordenadaX + tamaño <= 10) {
-                    jugador.añadirBarco(tamaño, coordenadaX, coordenadaY, orientacion);
-                    lugarValido=true;
-                }
-                if (tamaño == 3 && repetirTercerBarco) {
-                    tamaño--;
-                    repetirTercerBarco = false;
-                }
-                tamaño++;
-            }while(!lugarValido);
-            System.out.println("Se creo un barco de tamaño: "+tamaño);
-        }while(tamaño<5);
-    }
 
     public void jugarTurno(){
         System.out.println("============Tablero Jugador============");
@@ -117,17 +75,5 @@ public class Battleship {
 
     }
 
-    /**
-     * Valida si el barco se saldrá del tamaño adecuado del grid
-     */
-    public boolean validarColocarEnGrid(int cordX, int cordY, int tamaño, char orientar){
-        boolean sePuede = true;
-        if(tamaño >= 2 && cordX==10 && orientar == 'H'){
-            sePuede = false;
-        } else if (tamaño >=2 && cordY==10 && orientar == 'V') {
-            sePuede = false;
-        }
 
-        return sePuede;
-    }
 }

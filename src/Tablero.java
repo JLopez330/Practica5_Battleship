@@ -35,6 +35,19 @@ public class Tablero {
 
     }
 
+    /**
+     * Valida si el barco se saldrá del tamaño adecuado del grid
+     */
+    public boolean validarColocarEnGrid(int cordX, int cordY, int tamaño, char orientar){
+        boolean sePuede = true;
+        if(tamaño >= 2 && cordX==10 && orientar == 'H'){
+            sePuede = false;
+        } else if (tamaño >=2 && cordY==10 && orientar == 'V') {
+            sePuede = false;
+        }
+
+        return sePuede;
+    }
 
     public void recibirBarco(Barco auxiliar){
         barcos.add(auxiliar);

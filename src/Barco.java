@@ -44,6 +44,10 @@ public class Barco {
         return ubicacion;
     }
 
+    /**
+     * Crea un barco al recibir sus coordenadas como int y la orientacion en un char
+     *
+     */
     public void crearBarco(int cordX, int cordY, char orientacion){
         for (int i = 0; i < tamano; i++) {
             Espacio aux = new Espacio(cordX,cordY);
@@ -56,6 +60,11 @@ public class Barco {
         }
     }
 
+    /**
+     * Compara la ubicación del barco con otro que recibe, si se encuentran o no en el mismo
+     * espacio regresa un boolean
+     *
+     */
     public boolean compararUbicacionesConOtroBarco(ArrayList<Espacio> ubicaciones){
         boolean coinciden = false;
         for (Espacio espacio:ubicacion) {
@@ -71,7 +80,10 @@ public class Barco {
         return coinciden;
     }
 
-
+    /**
+     * Verifica si el barco es golpeado
+     *
+     */
     public String verificarGolpe(int cordX, int cordY){
         String resultado = "";
         int marcadorGolpe = 0;
@@ -98,6 +110,11 @@ public class Barco {
         return resultado;
     }
 
+    /**
+     * Daña al barco, si su vida es disminuida a 0, regresa un mensaje y hunde
+     * el barco
+     *
+     */
     public void golpearBarco(boolean fueGolpeado){
         if(fueGolpeado){
             vida--;
