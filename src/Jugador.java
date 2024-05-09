@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class Jugador {
 
-    private ArrayList<Barco> barcos;
+    private ArrayList<Barco> barcosJugador;
     private Tablero tablero;
 
 
     public Jugador(){
-        barcos = new ArrayList<>();
+        barcosJugador = new ArrayList<>();
         tablero = new Tablero();
     }
 
@@ -51,7 +51,7 @@ public class Jugador {
                 if(tablero.validarColocarEnGrid(cordX,cordY,tamaño,orientacion)){
                     if(i==0){
                         aux = new Barco(tamaño,cordX,cordY,orientacion);
-                        barcos.add(aux);
+                        barcosJugador.add(aux);
                         colocable=true;
                         System.out.println("Barco de Tamaño "+tamaño+" colocado en: ");
                         System.out.println("("+cordX+","+cordYLetra+") posición: "+orientacion);
@@ -59,7 +59,7 @@ public class Jugador {
                         aux = new Barco(tamaño,cordX,cordY,orientacion);
                         colocable=verificarEspacioDeBarco(aux);
                         if(!colocable){
-                            barcos.add(aux);
+                            barcosJugador.add(aux);
                             System.out.println("Barco de Tamaño "+tamaño+" colocado en: ");
                             System.out.println("("+cordX+","+cordYLetra+") posición: "+orientacion);
                             colocable=true;
@@ -73,6 +73,8 @@ public class Jugador {
             }while(!colocable);
         tamaño++;
         }
+        mandarBarcosATablero();
+        tablero.modificarContenido();
     }
 
     /**
@@ -83,7 +85,7 @@ public class Jugador {
     public boolean verificarEspacioDeBarco(Barco barcoAux){
         boolean seChocan = true;
         ArrayList<Espacio>auxUbucar = barcoAux.getUbicaciones();
-        for (Barco barco: barcos) {
+        for (Barco barco: barcosJugador) {
             if(seChocan){
                 seChocan = barco.compararUbicacionesConOtroBarco(auxUbucar);
             }
@@ -97,8 +99,8 @@ public class Jugador {
      * Manda una copia de los barcos al tablero para poder mostrarlos
      */
     public void mandarBarcosATablero(){
-        for (int i = 0; i < 5 && i < barcos.size(); i++) {
-            tablero.recibirBarco(barcos.get(i));
+        for(Barco barco:barcosJugador){
+            tablero.recibirBarco(barco);
         }
     }
 

@@ -2,9 +2,12 @@ import java.util.ArrayList;
 
 public class Tablero {
     private char[][] coordenadasGrid;
-    private ArrayList<Barco> barcos;
+    private ArrayList<Barco> barcosTablero;
+    private ArrayList<Barco> barcosJugador;
 
     public Tablero(){
+        barcosTablero = new ArrayList<>();
+        barcosJugador=new ArrayList<>();
         coordenadasGrid = new char[10][10];
         for (int i = 0; i <10 ; i++) {
             for (int j = 0; j <10; j++) {
@@ -50,21 +53,26 @@ public class Tablero {
     }
 
     public void recibirBarco(Barco auxiliar){
-        barcos.add(auxiliar);
+        barcosJugador.add(auxiliar);
+
     }
+
 
     public char devolverContenido(int coordenadaX, int coordenadaY){
         return coordenadasGrid[coordenadaX-1][coordenadaY-1];
     }
 
     public void modificarContenido(){
-        System.out.println(barcos.size());
-        for(int i=1;i<=5;i++){
-            for (int j=1;j<=barcos.get(i).getTamano();j++){
-                if(barcos.get(i).getOrientacion()=='H'){
-                    coordenadasGrid[barcos.get(i).getCordX()+j-1][barcos.get(i).getCordY()] = 'o';
-                }else if(barcos.get(i).getOrientacion()=='V'){
-                    coordenadasGrid[barcos.get(i).getCordX()][barcos.get(i).getCordY()+j-1] = 'o';
+        for(Barco barco:barcosJugador){
+            System.out.println(barco.getTamano());
+        }
+        int j=0;
+        for (Barco barco:barcosJugador){
+            for(int i=0;i<barco.getTamano();i++) {
+                if (barco.getOrientacion() == 'H') {
+                    coordenadasGrid[barco.getCordY() - 1][barco.getCordX() - 1 + i] = 'o';
+                } else if (barco.getOrientacion() == 'V') {
+                    coordenadasGrid[barco.getCordY() - 1 + i][barco.getCordX() - 1] = 'o';
                 }
             }
         }

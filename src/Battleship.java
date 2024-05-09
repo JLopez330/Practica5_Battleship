@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Battleship {
-    Tablero tablero = new Tablero();
     Jugador jugador = new Jugador();
     Enemigo computadora = new Enemigo();
     Tablero enemigo = new Tablero();
@@ -24,51 +23,10 @@ public class Battleship {
         jugador.crearBarcosATablero();
         jugarTurno();
     }
-    public void mostrarTableroComputadora(){
-        System.out.println("Tablero de la maquina");
-        // Imprimir los números superiores
-        System.out.print("  ");
-        for (int i = 1; i <= 10; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
 
-        // Imprimir el tablero con letras a-j en el lado izquierdo
-        char letra = 'a';
-        for (int i = 1; i <= 10; i++) {
-            System.out.print(letra + " ");  // Imprimir la letra en el lado izquierdo
-            for (int j = 1; j <= 10; j++) {
-                System.out.print(tablero.devolverContenido(i,j)+" ");  // Imprimir el número de columna
-            }
-            System.out.println();
-            letra++; // Incrementar la letra
-        }
-    }
-    public void mostrarTableroJugador(){
-        System.out.println("Tablero del jugador");
-        // Imprimir los números superiores
-        System.out.print("  ");
-        for (int i = 1; i <= 10; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-
-        // Imprimir el tablero con letras a-j en el lado izquierdo
-        char letra = 'a';
-        for (int i = 1; i <= 10; i++) {
-            System.out.print(letra + " ");  // Imprimir la letra en el lado izquierdo
-            for (int j = 1; j <= 10; j++) {
-                System.out.print(enemigo.devolverContenido(i,j)+" ");  // Imprimir el número de columna
-            }
-            System.out.println();
-            letra++; // Incrementar la letra
-        }
-    }
 
     public void jugarTurno(){
         System.out.println("============Tablero Jugador============");
-        jugador.mandarBarcosATablero();
-        tablero.modificarContenido();
         jugador.mostrarElTablero();
         System.out.println();
         System.out.println("============Tablero Enemigo============");
