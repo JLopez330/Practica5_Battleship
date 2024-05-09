@@ -21,6 +21,7 @@ public class Battleship {
             }
         }while(!(dificultad==1 || dificultad==0));
         jugador.crearBarcosATablero();
+        computadora.crearBarcosATablero();
         jugarTurno();
     }
 
