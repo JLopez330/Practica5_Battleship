@@ -75,7 +75,7 @@ public class Tablero {
     }
 
     public void modificarTablero(int cordX,int cordY){
-        if(devolverContenido(cordX,cordY)=='o'){
+        if(devolverContenido(cordY,cordX)=='o'){
             coordenadasGrid[cordY-1][cordX-1]='X';
         }else{
             coordenadasGrid[cordY-1][cordX-1]='-';
