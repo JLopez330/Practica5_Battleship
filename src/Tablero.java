@@ -1,12 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Tablero {
     private char[][] coordenadasGrid;
-    private ArrayList<Barco> barcosTablero;
     private ArrayList<Barco> barcosJugador;
 
     public Tablero(){
-        barcosTablero = new ArrayList<>();
         barcosJugador=new ArrayList<>();
         coordenadasGrid = new char[10][10];
         for (int i = 0; i <10 ; i++) {
@@ -62,10 +61,7 @@ public class Tablero {
         return coordenadasGrid[coordenadaX-1][coordenadaY-1];
     }
 
-    public void modificarContenido(){
-        for(Barco barco:barcosJugador){
-            System.out.println(barco.getTamano());
-        }
+    public void crearContenido(){
         int j=0;
         for (Barco barco:barcosJugador){
             for(int i=0;i<barco.getTamano();i++) {
@@ -74,6 +70,16 @@ public class Tablero {
                 } else if (barco.getOrientacion() == 'V') {
                     coordenadasGrid[barco.getCordY() - 1 + i][barco.getCordX() - 1] = 'o';
                 }
+            }
+        }
+    }
+
+    public void modificarTablero(int cordX,int cordY){
+        for(Barco barco:barcosJugador){
+            if(barco.verificarGolpe(cordX,cordY)){
+                coordenadasGrid[cordX][cordY]='X';
+            }else{
+                coordenadasGrid[cordX][cordY]='-';
             }
         }
     }

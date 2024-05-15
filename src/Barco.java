@@ -102,8 +102,8 @@ public class Barco {
      * Verifica si el barco es golpeado
      *
      */
-    public String verificarGolpe(int cordX, int cordY){
-        String resultado = "";
+    public Boolean verificarGolpe(int cordX, int cordY){
+        boolean resultado=false;
         int marcadorGolpe = 0;
 
         Iterator<Espacio> iterador = ubicacion.iterator();
@@ -114,17 +114,15 @@ public class Barco {
                 iterador.remove();
             }
         }
-
         if(marcadorGolpe>0){
             golpearBarco(true);
             if(!estaHundido){
-                resultado = "Golpe!";
+                resultado = true;
             }else{
-                resultado = "Hundido!";
+                resultado = true;
+                System.out.println("Barco hundido");
             }
         }
-        resultado = "Agua!";
-
         return resultado;
     }
 

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Enemigo {
     private ArrayList<Barco> barcosEnemigo;
@@ -10,65 +11,55 @@ public class Enemigo {
         tablero = new Tablero();
     }
 
-    public void crearBarcosATablero(){
+    public void crearBarcosATablero() {
+        int cordX = 0;
+        int cordY = 0;
+        int desicion;
+        char orientacion='X';
         Random random = new Random();
-        int tamaño=2;
+        int tamaño = 2;
         for (int i = 0; i < 5; i++) {
-            int cordX=-1;
-            int cordY=-1;
-            char cordYLetra='X';
-            char orientacion = 'X';
-            boolean colocable = false;
-            if(i==2){
-                tamaño=3;
+            if (i == 2) {
+                tamaño = 3;
             }
-            Barco aux;
+            boolean colocado = false;
             do {
-                do {
-                    cordX = random.nextInt(10);
-                } while (cordX < 1 || cordX > 10);
-                do {
-                    cordY = random.nextInt(10);
-                } while(cordY < 1 || cordY > 10);
-                orientacion='H';
-                if(tablero.validarColocarEnGrid(cordX,cordY,tamaño,orientacion)){
-                    if(i==0){
-                        aux = new Barco(tamaño,cordX,cordY,orientacion);
-                        barcosEnemigo.add(aux);
-                        colocable=true;
-                        System.out.println("Barco de Tamaño "+tamaño+" colocado en: ");
-                        System.out.println("("+cordX+","+cordYLetra+") posición: "+orientacion);
-                    }else{
-                        aux = new Barco(tamaño,cordX,cordY,orientacion);
-                        colocable=verificarEspacioDeBarco(aux);
-                        if(!colocable){
-                            barcosEnemigo.add(aux);
-                            System.out.println("Barco de Tamaño "+tamaño+" colocado en: ");
-                            System.out.println("("+cordX+","+cordYLetra+") posición: "+orientacion);
-                            colocable=true;
-                        }else{
-                            System.out.println("Error al colocar Barco!");
-                            colocable=false;
-                        }
-                    }
-
+                desicion =random.nextInt(2);
+                if(desicion==0){
+                    orientacion='H';
+                }else{
+                    orientacion='V';
                 }
-            }while(!colocable);
+                if(orientacion=='H'){
+                    cordX = random.nextInt(10-tamaño)+1;
+                    cordY = random.nextInt(10)+1;
+                }else{
+                    cordX = random.nextInt(10)+1;
+                    cordY = random.nextInt(10-tamaño)+1;
+                }
+                if (tablero.validarColocarEnGrid(cordX, cordY, tamaño, orientacion)) {
+                    Barco nuevoBarco = new Barco(tamaño, cordX, cordY, orientacion);
+                    if (!verificarEspacioDeBarco(nuevoBarco)) {
+                        barcosEnemigo.add(nuevoBarco);
+                        colocado = true;
+                    }
+                }
+            } while (!colocado);
             tamaño++;
         }
+
         mandarBarcosATablero();
-        tablero.modificarContenido();
+        tablero.crearContenido();
     }
 
-    public boolean verificarEspacioDeBarco(Barco barcoAux){
-        boolean seChocan = true;
-        ArrayList<Espacio>auxUbucar = barcoAux.getUbicaciones();
-        for (Barco barco: barcosEnemigo) {
-            if(seChocan){
-                seChocan = barco.compararUbicacionesConOtroBarco(auxUbucar);
+    // Método para verificar si hay superposición con otros barcos
+    public boolean verificarEspacioDeBarco(Barco barcoAux) {
+        for (Barco barco : barcosEnemigo) {
+            if (barco.compararUbicacionesConOtroBarco(barcoAux.getUbicaciones())) {
+                return true;
             }
         }
-        return seChocan;
+        return false;
     }
 
     public void mandarBarcosATablero(){
@@ -84,4 +75,20 @@ public class Enemigo {
         tablero.mostrarTablero();
     }
 
+    public void recivirGolpe(){
+        Scanner sc = new Scanner(System.in);
+        int cordX=-1;
+        int cordY=-1;
+        char cordYLetra='X';
+        do {
+            System.out.println("Ingresa la coordenada en X (1 a 10): ");
+            cordX = sc.nextInt();
+        } while (cordX < 1 || cordX > 10);
+        do {
+            System.out.println("Ingresa la coordenada en Y (A a J): ");
+            cordYLetra = Character.toLowerCase(sc.next().charAt(0));
+            cordY = cordYLetra - 'a' + 1;
+        } while(cordY < 1 || cordY > 10);
+        tablero.modificarTablero(cordX-1,cordY-1);
+    }
 }

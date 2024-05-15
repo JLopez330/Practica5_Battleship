@@ -22,11 +22,18 @@ public class Battleship {
         }while(!(dificultad==1 || dificultad==0));
         jugador.crearBarcosATablero();
         computadora.crearBarcosATablero();
+        System.out.println("============Tablero Jugador============");
+        jugador.mostrarElTablero();
+        System.out.println();
+        System.out.println("============Tablero Enemigo============");
+        computadora.mostrarElTablero();
+        System.out.println();
         jugarTurno();
     }
 
 
     public void jugarTurno(){
+        computadora.recivirGolpe();
         System.out.println("============Tablero Jugador============");
         jugador.mostrarElTablero();
         System.out.println();
