@@ -102,7 +102,7 @@ public class Barco {
      * Verifica si el barco es golpeado
      *
      */
-    public Boolean verificarGolpe(int cordX, int cordY){
+    public Boolean verificarGolpe(int cordY, int cordX){
         boolean resultado=false;
         int marcadorGolpe = 0;
 

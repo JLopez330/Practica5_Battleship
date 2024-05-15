@@ -89,6 +89,6 @@ public class Enemigo {
             cordYLetra = Character.toLowerCase(sc.next().charAt(0));
             cordY = cordYLetra - 'a' + 1;
         } while(cordY < 1 || cordY > 10);
-        tablero.modificarTablero(cordX-1,cordY-1);
+        tablero.modificarTablero(cordX,cordY);
     }
 }

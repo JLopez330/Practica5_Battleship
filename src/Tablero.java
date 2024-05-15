@@ -75,12 +75,10 @@ public class Tablero {
     }
 
     public void modificarTablero(int cordX,int cordY){
-        for(Barco barco:barcosJugador){
-            if(barco.verificarGolpe(cordX,cordY)){
-                coordenadasGrid[cordX][cordY]='X';
-            }else{
-                coordenadasGrid[cordX][cordY]='-';
-            }
+        if(devolverContenido(cordX,cordY)=='o'){
+            coordenadasGrid[cordY-1][cordX-1]='X';
+        }else{
+            coordenadasGrid[cordY-1][cordX-1]='-';
         }
     }
 }
