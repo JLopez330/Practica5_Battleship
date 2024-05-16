@@ -77,8 +77,24 @@ public class Tablero {
     public void modificarTablero(int cordX,int cordY){
         if(devolverContenido(cordY,cordX)=='o'){
             coordenadasGrid[cordY-1][cordX-1]='X';
-        }else{
+        }else if(devolverContenido(cordY,cordX)=='#'){
             coordenadasGrid[cordY-1][cordX-1]='-';
         }
+    }
+
+    public boolean quedanBarcosVivos(){
+        int aciertos=0;
+        boolean vivo=true;
+        for (int i = 0; i <10 ; i++) {
+            for (int j = 0; j <10; j++) {
+                if(coordenadasGrid[i][j] == 'X'){
+                    aciertos++;
+                }
+            }
+        }
+        if(aciertos==17){
+            vivo=false;
+        }
+        return vivo;
     }
 }

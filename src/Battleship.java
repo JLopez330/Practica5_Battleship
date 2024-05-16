@@ -4,6 +4,7 @@ public class Battleship {
     Jugador jugador = new Jugador();
     Enemigo computadora = new Enemigo();
     Tablero enemigo = new Tablero();
+    boolean finDePartida=false;
     int dificultad=0;
     public Battleship(){
 
@@ -28,12 +29,22 @@ public class Battleship {
         System.out.println("============Tablero Enemigo============");
         computadora.mostrarElTablero();
         System.out.println();
-        jugarTurno();
+        do{
+            jugarTurno();
+            if(jugador.comprobarSiGanoLaComputadora()){
+                finDePartida=true;
+            }
+            if(computadora.comprobarSiGanoElJugador()){
+                finDePartida=true;
+            }
+        }while(!finDePartida);
+
     }
 
 
     public void jugarTurno(){
         computadora.recivirGolpe();
+        jugador.recivirGolpe();
         System.out.println("============Tablero Jugador============");
         jugador.mostrarElTablero();
         System.out.println();

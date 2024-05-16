@@ -91,4 +91,13 @@ public class Enemigo {
         } while(cordY < 1 || cordY > 10);
         tablero.modificarTablero(cordX,cordY);
     }
+
+    public boolean comprobarSiGanoElJugador(){
+        boolean ganador=false;
+        if (!tablero.quedanBarcosVivos()){
+            ganador=true;
+            System.out.println("El jugador a ganado");
+        }
+        return ganador;
+    }
 }
