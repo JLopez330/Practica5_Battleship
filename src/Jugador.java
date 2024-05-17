@@ -7,6 +7,9 @@ public class Jugador {
     private ArrayList<Barco> barcosJugador;
     private Tablero tablero;
 
+    private int direccionImpacto = 0;
+    private int cordXFijada = 0;
+    private int cordYFijada = 0;
 
     public Jugador(){
         barcosJugador = new ArrayList<>();
@@ -111,13 +114,108 @@ public class Jugador {
     public void mostrarElTablero(){
         tablero.mostrarTablero();
     }
-    public void recivirGolpe(){
+
+    public void recibirGolpe(){
         int cordX=0;
         int cordY=0;
         Random aleatorio = new Random();
-        cordX=aleatorio.nextInt(10)+1;
-        cordY=aleatorio.nextInt(10)+1;
-        tablero.modificarTablero(cordY,cordX);
+        boolean espacioValido = false;
+
+        do{
+            switch (direccionImpacto){
+                case 0:
+                    cordX=aleatorio.nextInt(10)+1;
+                    cordY=aleatorio.nextInt(10)+1;
+                    if(tablero.devolverContenido(cordX,cordY)=='#'){
+                        tablero.modificarTablero(cordY,cordX);
+                        espacioValido=true;
+                    }
+                    if(tablero.devolverContenido(cordX,cordY)=='X'){
+                        direccionImpacto=aleatorio.nextInt(4)+1;
+                        switch (direccionImpacto){
+                                case 1: //Norte
+                                cordYFijada=cordY-1;
+                                cordXFijada=cordX;
+                                    break;
+                                case 2: //Este
+                                    cordXFijada=cordX+1;
+                                    cordYFijada=cordY;
+                                    break;
+                                case 3: //Sur
+                                    cordYFijada=cordY+1;
+                                    cordXFijada=cordX;
+                                    break;
+                                case 4: //Oeste
+                                    cordXFijada=cordX-1;
+                                    cordYFijada=cordY;
+                                    break;
+                            }
+                        }
+                        break;
+
+                    case 1: //Norte
+                        if(cordYFijada>=1){
+                            tablero.modificarTablero(cordYFijada,cordXFijada);
+                            if(tablero.devolverContenido(cordXFijada,cordYFijada)=='X'){
+                                cordYFijada--;
+                            } else {
+                                direccionImpacto=0;
+                            }
+                            espacioValido=true;
+                        }else{
+                            direccionImpacto=0;
+                        }
+                        break;
+
+                    case 2: //Este
+                        if(cordYFijada<=10){
+                            tablero.modificarTablero(cordYFijada,cordXFijada);
+                            if(tablero.devolverContenido(cordXFijada,cordYFijada)=='X'){
+                                cordXFijada++;
+                            }else {
+                                direccionImpacto=0;
+                            }
+                            espacioValido=true;
+                        }else{
+                            direccionImpacto=0;
+                        }
+
+                        break;
+
+                    case 3: //Sur
+                        if(cordYFijada<=10){
+                            tablero.modificarTablero(cordYFijada,cordXFijada);
+                            if(tablero.devolverContenido(cordXFijada,cordYFijada)=='X' && cordYFijada<10){
+                                cordYFijada++;
+                            }else{
+                                direccionImpacto=0;
+                            }
+                            espacioValido=true;
+                        }else{
+                            direccionImpacto = 0;
+                        }
+
+                        break;
+
+                    case 4: //Oeste
+                        if(cordXFijada>=1){
+                            tablero.modificarTablero(cordYFijada,cordXFijada);
+                            if(tablero.devolverContenido(cordXFijada,cordYFijada)=='X' && cordXFijada>0){
+                                cordXFijada--;
+                            }else {
+                                direccionImpacto=0;
+                            }
+                            espacioValido=true;
+                        }else{
+                            direccionImpacto=0;
+                        }
+                        break;
+
+
+
+                }
+            }while(!espacioValido);
+
     }
     public boolean comprobarSiGanoLaComputadora(){
         boolean ganador=false;

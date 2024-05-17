@@ -43,8 +43,8 @@ public class Battleship {
 
 
     public void jugarTurno(){
-        computadora.recivirGolpe();
-        jugador.recivirGolpe();
+        computadora.recibirGolpe();
+        jugador.recibirGolpe();
         System.out.println("============Tablero Jugador============");
         jugador.mostrarElTablero();
         System.out.println();

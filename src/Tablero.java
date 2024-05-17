@@ -82,6 +82,7 @@ public class Tablero {
         }
     }
 
+
     public boolean quedanBarcosVivos(){
         int aciertos=0;
         boolean vivo=true;

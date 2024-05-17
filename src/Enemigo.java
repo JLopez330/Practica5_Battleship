@@ -75,7 +75,7 @@ public class Enemigo {
         tablero.mostrarTablero();
     }
 
-    public void recivirGolpe(){
+    public void recibirGolpe(){
         Scanner sc = new Scanner(System.in);
         int cordX=-1;
         int cordY=-1;
