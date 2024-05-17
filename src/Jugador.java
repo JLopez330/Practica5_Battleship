@@ -37,16 +37,17 @@ public class Jugador {
             }
             Barco aux;
             do {
-                System.out.println("Barco #"+(i+1)+" tamaño: " + tamaño);
-                do {
-                    System.out.println("Ingresa la coordenada en X (1 a 10): ");
-                    cordX = sc.nextInt();
-                } while (cordX < 1 || cordX > 10);
                 do {
                     System.out.println("Ingresa la coordenada en Y (A a J): ");
                     cordYLetra = Character.toLowerCase(sc.next().charAt(0));
                     cordY = cordYLetra - 'a' + 1;
                 } while(cordY < 1 || cordY > 10);
+                System.out.println("Barco #"+(i+1)+" tamaño: " + tamaño);
+                do {
+                    System.out.println("Ingresa la coordenada en X (1 a 10): ");
+                    cordX = sc.nextInt();
+                } while (cordX < 1 || cordX > 10);
+
                 do {
                     System.out.println("Ingresa la orientación del barco");
                     System.out.println("[H] Horizontal\n"+"[V] Vertical");

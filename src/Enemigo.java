@@ -12,8 +12,8 @@ public class Enemigo {
     }
 
     public void crearBarcosATablero() {
-        int cordX = 0;
-        int cordY = 0;
+        int cordX=0;
+        int cordY=0;
         int desicion;
         char orientacion='X';
         Random random = new Random();
@@ -37,14 +37,14 @@ public class Enemigo {
                     cordX = random.nextInt(10)+1;
                     cordY = random.nextInt(10-tamaño)+1;
                 }
-                if (tablero.validarColocarEnGrid(cordX, cordY, tamaño, orientacion)) {
+                if (tablero.validarColocarEnGrid(cordX, cordY, tamaño, orientacion)){
                     Barco nuevoBarco = new Barco(tamaño, cordX, cordY, orientacion);
-                    if (!verificarEspacioDeBarco(nuevoBarco)) {
+                    if (!verificarEspacioDeBarco(nuevoBarco)){
                         barcosEnemigo.add(nuevoBarco);
                         colocado = true;
                     }
                 }
-            } while (!colocado);
+            }while(!colocado);
             tamaño++;
         }
 
@@ -53,9 +53,9 @@ public class Enemigo {
     }
 
     // Método para verificar si hay superposición con otros barcos
-    public boolean verificarEspacioDeBarco(Barco barcoAux) {
-        for (Barco barco : barcosEnemigo) {
-            if (barco.compararUbicacionesConOtroBarco(barcoAux.getUbicaciones())) {
+    public boolean verificarEspacioDeBarco(Barco barcoAux){
+        for(Barco barco : barcosEnemigo){
+            if(barco.compararUbicacionesConOtroBarco(barcoAux.getUbicaciones())) {
                 return true;
             }
         }
@@ -76,19 +76,28 @@ public class Enemigo {
     }
 
     public void recibirGolpe(){
+        boolean espacioValido;
         Scanner sc = new Scanner(System.in);
         int cordX=-1;
         int cordY=-1;
         char cordYLetra='X';
         do {
-            System.out.println("Ingresa la coordenada en X (1 a 10): ");
-            cordX = sc.nextInt();
-        } while (cordX < 1 || cordX > 10);
-        do {
-            System.out.println("Ingresa la coordenada en Y (A a J): ");
-            cordYLetra = Character.toLowerCase(sc.next().charAt(0));
-            cordY = cordYLetra - 'a' + 1;
-        } while(cordY < 1 || cordY > 10);
+            espacioValido=true;
+            do {
+                System.out.println("Ingresa la coordenada en Y (A a J): ");
+                cordYLetra = Character.toLowerCase(sc.next().charAt(0));
+                cordY = cordYLetra - 'a' + 1;
+            } while (cordY < 1 || cordY > 10);
+            do {
+                System.out.println("Ingresa la coordenada en X (1 a 10): ");
+                cordX = sc.nextInt();
+            } while (cordX < 1 || cordX > 10);
+
+            if (tablero.devolverContenido(cordY, cordX) == 'X' || tablero.devolverContenido(cordY, cordX) == '-') {
+                System.out.println("El lugar elegido ya a sido disparado con anterioridad");
+                espacioValido = false;
+            }
+        }while(!espacioValido);
         tablero.modificarTablero(cordX,cordY);
     }
 
