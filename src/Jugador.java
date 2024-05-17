@@ -126,7 +126,7 @@ public class Jugador {
                 case 0:
                     cordX=aleatorio.nextInt(10)+1;
                     cordY=aleatorio.nextInt(10)+1;
-                    if(tablero.devolverContenido(cordX,cordY)=='#'){
+                    if(tablero.devolverContenido(cordX,cordY)=='#' || tablero.devolverContenido(cordX,cordY)=='o'){
                         tablero.modificarTablero(cordY,cordX);
                         espacioValido=true;
                     }
