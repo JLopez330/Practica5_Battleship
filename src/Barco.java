@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Iterator;
+
 
 public class Barco {
     private int tamano;
@@ -98,33 +98,6 @@ public class Barco {
         return coinciden;
     }
 
-    /**
-     * Verifica si el barco es golpeado
-     *
-     */
-    public Boolean verificarGolpe(int cordY, int cordX){
-        boolean resultado=false;
-        int marcadorGolpe = 0;
-
-        Iterator<Espacio> iterador = ubicacion.iterator();
-        while(iterador.hasNext()){
-            Espacio espacio = iterador.next();
-            if(espacio.getCordenadaEnX()==cordX && espacio.getCordenadaEnY()==cordY){
-                marcadorGolpe = 1;
-                iterador.remove();
-            }
-        }
-        if(marcadorGolpe>0){
-            golpearBarco(true);
-            if(!estaHundido){
-                resultado = true;
-            }else{
-                resultado = true;
-                System.out.println("Barco hundido");
-            }
-        }
-        return resultado;
-    }
 
     /**
      * Daña al barco, si su vida es disminuida a 0, regresa un mensaje y hunde
