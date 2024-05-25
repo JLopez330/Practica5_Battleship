@@ -3,24 +3,21 @@ import java.util.ArrayList;
 
 public class Barco {
     private int tamano;
-    private int vida;
     private int cordX;
     private int cordY;
     private char orientacion;
     private ArrayList<Espacio> ubicacion;
-    private boolean estaHundido;
 
     public Barco(int tamano, int cordX, int cordY, char orientacion) {
         this.tamano = tamano;
-        this.vida = this.tamano;
         this.cordX = cordX;
         this.cordY = cordY;
         this.orientacion = orientacion;
-        estaHundido = false;
         ubicacion = new ArrayList<>();
         crearBarco(cordX, cordY, orientacion);
     }
 
+    //Setters y getters de la clase
     public int getCordX() {
         return cordX;
     }
@@ -33,29 +30,8 @@ public class Barco {
         return orientacion;
     }
 
-    //Setters y getters de la clase
     public int getTamano() {
         return tamano;
-    }
-
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
-    }
-
-    public boolean isEstaHundido() {
-        return estaHundido;
-    }
-
-    public void setEstaHundido(boolean estaHundido) {
-        this.estaHundido = estaHundido;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida;
-    }
-
-    public int getVida() {
-        return vida;
     }
 
     public ArrayList<Espacio> getUbicaciones(){
@@ -96,21 +72,6 @@ public class Barco {
             }
         }
         return coinciden;
-    }
-
-
-    /**
-     * Daña al barco, si su vida es disminuida a 0, regresa un mensaje y hunde
-     * el barco
-     *
-     */
-    public void golpearBarco(boolean fueGolpeado){
-        if(fueGolpeado){
-            vida--;
-        }
-        if(vida==0){
-            estaHundido=true;
-        }
     }
 
 

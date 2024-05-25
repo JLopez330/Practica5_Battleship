@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Battleship {
     Jugador jugador = new Jugador();
     Enemigo computadora = new Enemigo();
-    Tablero enemigo = new Tablero();
     boolean finDePartida=false;
     public Battleship(){
 
