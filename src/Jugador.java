@@ -38,11 +38,11 @@ public class Jugador {
             Barco aux;
             do {
                 do {
+                    System.out.println("Barco #"+(i+1)+" tamaño: " + tamaño);
                     System.out.println("Ingresa la coordenada en Y (A a J): ");
                     cordYLetra = Character.toLowerCase(sc.next().charAt(0));
                     cordY = cordYLetra - 'a' + 1;
                 } while(cordY < 1 || cordY > 10);
-                System.out.println("Barco #"+(i+1)+" tamaño: " + tamaño);
                 do {
                     System.out.println("Ingresa la coordenada en X (1 a 10): ");
                     cordX = sc.nextInt();
